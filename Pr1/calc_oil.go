@@ -1,7 +1,5 @@
 package main
 
-// calcWorkMass computes the work mass for each element based on fire amounts
-// and a conversion coefficient.
 func calcWorkMass(carbonFire, hydrogenFire, sulfurFire, oxygenFire, fireToWorkMassCoef float64) map[string]float64 {
 	workMass := make(map[string]float64)
 	workMass["carbon_work"] = carbonFire * fireToWorkMassCoef
@@ -11,17 +9,14 @@ func calcWorkMass(carbonFire, hydrogenFire, sulfurFire, oxygenFire, fireToWorkMa
 	return workMass
 }
 
-// calcFireToWorkMassCoef calculates the coefficient that converts fire mass to work mass.
 func calcFireToWorkMassCoef(wetness, ash float64) float64 {
 	return (100 - wetness - ash) / 100
 }
 
-// calcBurnWorkTemp calculates the temperature of the burning work.
 func calcBurnWorkTemp(wetness, ashWork float64) float64 {
 	return ((100 - wetness - ashWork) / 100) - 0.025*wetness
 }
 
-// calcFuelOil aggregates all intermediate calculations into a single result map.
 func calcFuelOil(carbon, hydrogen, sulfur, oxygen, ash, wetness, vanadium float64) map[string]interface{} {
 	ashWork := ash * ((100 - wetness) / 100)
 	vanadiumWork := vanadium * ((100 - wetness) / 100)
