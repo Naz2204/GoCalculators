@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <section>
+        <h2>Пз4</h2>
+        <form method="post" id="calc_form" class="input_output">
+            <div id="cable" class="input_output">
+                <h3>Розрахунок перерізу кабеля</h3>
+                <div class="input_value">
+                    <label for="S_m" class="left"><abbr title="Розрахункове навантаження">S<sub>м</sub></abbr></label>
+                    <input id="S_m" name="S_m" class="values" type="number" step="0.01" required value="{{.S_m}}">
+                    <label for="S_m" class="right">кВ*А</label>
+                </div>
+                <div class="input_value">
+                    <label for="U_nom" class="left"><abbr title="Напруга внутрішнього електропостачання підприємства">U<sub>ном</sub></abbr></label>
+                    <input id="U_nom" name="U_nom" class="values" type="number" step="0.01" required value="{{.U_nom}}">
+                    <label for="U_nom" class="right">кВ</label>
+                </div>
+                <div class="input_value">
+                    <label for="I_k" class="left"><abbr title="Струм КЗ">I<sub>k</sub></abbr></label>
+                    <input id="I_k" name="I_k" class="values" type="number" step="0.01" required value="{{.I_k}}">
+                    <label for="I_k" class="right">кА</label>
+                </div>
+                <div class="input_value">
+                    <label for="t_f" class="left"><abbr title="Фіктивний час вимикання струму КЗ">t<sub>ф</sub></abbr></label>
+                    <input id="t_f" name="T_f" class="values" type="number" step="0.01" required value="{{.T_f}}">
+                    <label for="t_f" class="right">c</label>
+                </div>
+            </div>
+            <div id="3kz" class="input_output">
+                <h3>Розрахунок струму трифазного КЗ</h3>
+                <div class="input_value">
+                    <label for="S_k" class="left"><abbr title="Потужність КЗ">S<sub>к</sub></abbr></label>
+                    <input id="S_k" name="S_k" class="values" type="number" step="0.01"  required value="{{.S_k}}">
+                    <label for="S_k" class="right">МВ*А</label>
+                </div>
+                <div class="input_value">
+                    <label for="U_cn" class="left"><abbr title="Середня номінальна напруга точки, в якій виникає КЗ">U<sub>с.н</sub></abbr></label>
+                    <input id="U_cn" name="U_cn" class="values" type="number" step="0.01" required value="{{.U_cn}}">
+                    <label for="U_cn" class="right">кВ</label>
+                </div>
+                <div class="input_value">
+                    <label for="U_k" class="left"><abbr title="Напруга короткого замикання трансформатора">U<sub>к%</sub></abbr></label>
+                    <input id="U_k" name="U_k" class="values" type="number" step="0.01" required value="{{.U_k}}">
+                    <label for="U_k" class="right">%</label>
+                </div>
+                <div class="input_value">
+                    <label for="S_nom_t" class="left"><abbr title="Номінальна потужність трансформатора">S<sub>ном.т</sub></abbr></label>
+                    <input id="S_nom_t" name="S_nom_t" class="values" type="number" step="0.01" required value="{{.S_nom_t}}">
+                    <label for="S_nom_t" class="right">MВ*A</label>
+                </div>
+            </div>
+            <div id="test_work_params" class="input_output">
+                <h3>Розрахунок струмів для ХПнЕМ</h3>
+                <div class="input_value">
+                    <label for="l" class="left"><abbr title="Довжина відрізка мережі">l</abbr></label>
+                    <input id="l" name="L" class="values" type="number" step="0.01"  required value="{{.L}}">
+                    <label for="l" class="right">км</label>
+                </div>
+                <div class="input_value">
+                    <label for="U_k_max" class="left"><abbr title="Максимальна напруга короткого замикання трансформатора">U<sub>к.max</sub></abbr></label>
+                    <input id="U_k_max" name="U_k_max" class="values" type="number" step="0.01" required value="{{.U_k_max}}">
+                    <label for="U_k_max" class="right">%</label>
+                </div>
+                <div class="input_value">
+                    <label for="U_vn" class="left"><abbr title="Середня номанальна напруга">U<sub>в.н</sub></abbr></label>
+                    <input id="U_vn" name="U_vn" class="values" type="number" step="0.01" required value="{{.U_vn}}">
+                    <label for="U_vn" class="right">кВ</label>
+                </div>
+                <div class="input_value">
+                    <label for="U_nn" class="left"><abbr title="">U<sub>н.н</sub></abbr></label>
+                    <input id="U_nn" name="U_nn" class="values" type="number" step="0.01" required value="{{.U_nn}}">
+                    <label for="U_nn" class="right">Ом</label>
+                </div>
+                <div class="input_value">
+                    <label for="R_sn" class="left"><abbr title="Активний опір нормального режиму">R<sub>с.н</sub></abbr></label>
+                    <input id="R_sn" name="R_sn" class="values" type="number" step="0.01" required value="{{.R_sn}}">
+                    <label for="R_sn" class="right">Ом</label>
+                </div>
+                <div class="input_value">
+                    <label for="X_sn" class="left"><abbr title="Реактивний опір нормального режиму">X<sub>с.н</sub></abbr></label>
+                    <input id="X_sn" name="X_sn" class="values" type="number" step="0.01" required value="{{.X_sn}}">
+                    <label for="X_sn" class="right">Ом<sup>2</sup></label>
+                </div>
+                <div class="input_value">
+                    <label for="R_s_min" class="left"><abbr title="Активний опір мінімального режиму">R<sub>c.min</sub></abbr></label>
+                    <input id="R_s_min" name="R_s_min" class="values" type="number" step="0.01" required value="{{.R_s_min}}">
+                    <label for="R_s_min" class="right">кВ</label>
+                </div>
+                <div class="input_value">
+                    <label for="X_s_min" class="left"><abbr title="Реактивний опір мінімального режиму">X<sub>c.min</sub></abbr></label>
+                    <input id="X_s_min" name="X_s_min" class="values" type="number" step="0.01" required value="{{.X_s_min}}">
+                    <label for="X_s_min" class="right">кВ</label>
+                </div>
+            </div>
+        </form>
+        <div class = "buttons">
+            <button id="calculate" class="btn" type="submit" form="calc_form">Розраxувати</button>
+        </div>
+        <div id="results">
+            <div class="input_value">
+                <p class="left">Економічний переріз броньованого кабеля з паперовою ізоляцією в алюмінієвій оболонці типу ААБ</p>
+                <p class="right">{{index (index .Result "cable") 1}}мм<sup>2</sup></p>
+            </div>
+            <div class="input_value">
+                <p class="left">Оптимальний переріз броньованого кабеля з паперовою ізоляцією в алюмінієвій оболонці типу ААБ</p>
+                <p class="right">{{index (index .Result "cable") 0}}мм<sup>2</sup></p>
+            </div>
+            <div class="input_value">
+                <p class="left">Початкове діюче значення струму трифазного КЗ</p>
+                <p class="right">{{index .Result "kz"}}кА</p>
+            </div>
+            <div class="input_value">
+                <p class="left">Струм трифазного КЗ на шинах 10 кВ у нормальному режимі</p>
+                <p class="right">{{index (index (index .Result "stationKz") 0) 0}}А</p>
+            </div>
+            <div class="input_value">
+                <p class="left">Струм двофазного КЗ на шинах 10 кВ у нормальному режимі</p>
+                <p class="right">{{index (index (index .Result "stationKz") 0) 1}}А</p>
+            </div>
+            <div class="input_value">
+                <p class="left">Струм трифазного КЗ на шинах 10 кВ у мінімальному режимі</p>
+                <p class="right">{{index (index (index .Result "stationKz") 0) 2}}А</p>
+            </div>
+            <div class="input_value">
+                <p class="left">Струм двофазного КЗ на шинах 10 кВ у мінімальному режимі</p>
+                <p class="right">{{index (index (index .Result "stationKz") 0) 3}}А</p>
+            </div>
+            <div class="input_value">
+                <p class="left">Дійсний струм трифазного КЗ на шинах 10 кВ у нормальному режимі</p>
+                <p class="right">{{index (index (index .Result "stationKz") 1) 0}}А</p>
+            </div>
+            <div class="input_value">
+                <p class="left">Дійсний струм двофазного КЗ на шинах 10 кВ у нормальному режимі</p>
+                <p class="right">{{index (index (index .Result "stationKz") 1) 1}}А</p>
+            </div>
+            <div class="input_value">
+                <p class="left">Дійсний струм трифазного КЗ на шинах 10 кВ у мінімальному режимі</p>
+                <p class="right">{{index (index (index .Result "stationKz") 1) 2}}А</p>
+            </div>
+            <div class="input_value">
+                <p class="left">Дійсний струм двофазного КЗ на шинах 10 кВ у мінімальному режимі</p>
+                <p class="right">{{index (index (index .Result "stationKz") 1) 3}}А</p>
+            </div>
+            <div class="input_value">
+                <p class="left">Струм трифазного КЗ на ділянці з найвищим опором у нормальному режимі</p>
+                <p class="right">{{index (index (index .Result "stationKz") 2) 0}}А</p>
+            </div>
+            <div class="input_value">
+                <p class="left">Струм двофазного КЗ на ділянці з найвищим опором у нормальному режимі</p>
+                <p class="right">{{index (index (index .Result "stationKz") 2) 1}}А</p>
+            </div>
+            <div class="input_value">
+                <p class="left">Струм трифазного КЗ на ділянці з найвищим опором у мінімальному режимі</p>
+                <p class="right">{{index (index (index .Result "stationKz") 2) 2}}А</p>
+            </div>
+            <div class="input_value">
+                <p class="left">Струм двофазного КЗ на ділянці з найвищим опором у мінімальному режимі</p>
+                <p class="right">{{index (index (index .Result "stationKz") 2) 3}}А</p>
+            </div>
+        </div>
+    </section>
+    <script src="./index.js"></script>
+</body>
+</html>
