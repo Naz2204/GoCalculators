@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header>
+    <h1 id="site_name">Калькулятор</h1>
+    <div>
+        <a href="/fuel">Паливо</a>
+        <a href="/fuel_oil">Мазут</a>
+    </div>
+</header>
+<section>
+    <form method="post" id="calc_fields">
+        <div class="input_value">
+            <label class="left" for="carbon"><abbr title="Рівень вуглецю">C<sup>Г</sup></abbr></label>
+            <input type="number" step="0.01" class="values" id="carbon" name="carbon" value="{{.Carbon}}" required>
+            <label class="right" for="carbon">%</label>
+        </div>
+        <div class="input_value">
+            <label class="left" for="hydrogen"><abbr title="Рівень водню">H<sup>Г</sup></abbr></label>
+            <input type="number" step="0.01" class="values" id="hydrogen" name="hydrogen" value="{{.Hydrogen}}" required>
+            <label class="right" for="hydrogen">%</label>
+        </div>
+        <div class="input_value">
+            <label class="left" for="sulfur"><abbr title="Рівень сірки">S<sup>Г</sup></abbr></label>
+            <input type="number" step="0.01" class="values" id="sulfur" name="sulfur" value="{{.Sulfur}}" required>
+            <label class="right" for="sulfur">%</label>
+        </div>
+        <div class="input_value">
+            <label class="left" for="vanadium"><abbr title="Рівень ванадію">V<sup>С</sup></abbr></label>
+            <input type="number" step="0.01" class="values" id="vanadium" name="vanadium" value="{{.Vanadium}}" required>
+            <label class="right" for="vanadium">мг/кг</label>
+        </div>
+        <div class="input_value">
+            <label class="left" for="oxygen"><abbr title="Рівень кисню">O<sup>Г</sup></abbr></label>
+            <input type="number" step="0.01" class="values" id="oxygen" name="oxygen" value="{{.Oxygen}}" required>
+            <label class="right" for="oxygen">%</label>
+        </div>
+        <div class="input_value">
+            <label class="left" for="wetness"><abbr title="Рівень вологи">W<sup>P</sup></abbr></label>
+            <input type="number" step="0.01" class="values" id="wetness" name="wetness" value="{{.Wetness}}" required>
+            <label class="right" for="wetness">%</label>
+        </div>
+        <div class="input_value">
+            <label class="left" for="ash"><abbr title="Рівень золи">A<sup>С</sup></abbr></label>
+            <input type="number" step="0.01" class="values" id="ash" name="ash" value="{{.Ash}}" required>
+            <label class="right" for="ash">%</label>
+        </div>
+        <div class="input_value">
+            <label class="left" for="low_burn_fire_temp"><abbr title="Нижча теплота згоряння мазуту">Q<sub>i</sub> <sup>daf</sup> </abbr> </label>
+            <input type="number" step="0.01" class="values" id="low_burn_fire_temp" name="low_burn_fire_temp" value="{{.LowBurnFireTemp}}" required>
+            <label class="right" for="low_burn_fire_temp">МДж/кг</label>
+        </div>
+        <div>
+            <button id="calculate" type="submit">Розрахувати</button>
+        </div>
+    </form>
+    <div id="results">
+        <h3>Результати</h3>
+        {{if .Result}}
+
+        <p>Склад робочої маси мазуту становитиме: <abbr title="Рівень вуглецю">C<sup>Р</sup></abbr> = {{printf "%.2f" (index .Result "carbonWork")}} %;
+            <abbr title="Рівень водню">H<sup>Р</sup></abbr> = {{printf "%.2f" (index .Result "hydrogenWork")}} %;
+            <abbr title="Рівень сірки">S<sup>Р</sup></abbr> = {{printf "%.2f" (index .Result "sulfurWork")}} %;
+            <abbr title="Рівень кисню">O<sup>Р</sup></abbr> = {{printf "%.2f" (index .Result "oxygenWork")}} %;
+            <abbr title="Рівень золи">A<sup>Р</sup></abbr> = {{printf "%.2f" (index .Result "ashWork")}} %;
+            <abbr title="Рівень ванадію">V<sup>Р</sup></abbr> = {{printf "%.2f" (index .Result "vanadiumWork")}} мг/кг;<br/>
+            Нижча теплота згоряння мазуту на робочу масу для робочої маси становить: {{printf "%.3f" (index .Result "burnWorkTemp")}} МДж/кг.
+        </p>
+        {{else}}
+
+        <p>Введіть дані для розрахунків</p>
+
+        {{end}}
+    </div>
+</section>
+<footer>
+    <h3>Дякую за користування</h3>
+</footer>
+</body>
+</html>

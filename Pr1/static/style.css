@@ -1,0 +1,125 @@
+body {
+    margin: 0;
+    background-color: #82fff6;
+}
+
+header {
+    height: 18vh;
+    background-color: #02e6d8;
+    display: flex;
+    flex-direction: column;
+}
+
+#site_name {
+    margin: 10px 20px;
+    align-self: center;
+}
+
+header > div {
+    display: flex;
+    justify-content: center;
+
+    > a {
+        margin: 0 10px;
+        outline: none;
+        text-decoration: none;
+        padding: 10px 5px;
+        border-radius: 5px;
+    }
+
+    > a:link{
+
+    }
+
+    > a:visited{
+        background: #02C3BD;
+    }
+
+    > a:focus{
+
+    }
+
+    > a:hover{
+        background: #02C3BD;
+    }
+
+    > a:active{
+        background: #02C3BD;
+    }
+}
+
+section {
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer {
+    height: 12vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #02e6d8;
+}
+
+#calc_fields {
+    margin: 20px;
+    width: 50%;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #02e6d8;
+
+    > div {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+.input_value {
+     background-color: #1db5ac;
+     border-radius: 6px;
+     margin-bottom: 10px;
+
+     .left {
+         align-self: center;
+         text-align: center;
+         width: 25%;
+     }
+
+     .values {
+         display: block;
+         height: 25px;
+         width: 100%;
+         text-align: center;
+     }
+
+     .right {
+         align-self: center;
+         text-align: center;
+         width: 25%;
+     }
+ }
+
+#calculate {
+    background-color: #1db5ac;
+    border-radius: 6px;
+    border-width: 0;
+    width: 130px;
+    height: 30px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+#calculate:hover {
+    background-color: #82fff6;
+}
+
+#results {
+    margin: 0 20px 20px 20px;
+    width: 50%;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #02e6d8;
+}

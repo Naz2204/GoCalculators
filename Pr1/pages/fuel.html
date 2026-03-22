@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Калькулятор</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<header>
+    <h1 id="site_name">Калькулятор</h1>
+    <div>
+        <a href="/fuel">Паливо</a>
+        <a href="/fuel_oil">Мазут</a>
+    </div>
+</header>
+
+<section>
+
+    <form method="POST" id="calc_fields">
+
+            <div class="input_value">
+                <label class="left" for="carbon"><abbr title="Рівень вуглецю">C<sup>P</sup></abbr></label>
+                <input type="number" step="0.01" class="values" id="carbon" name="carbon" value="{{.Carbon}}" required>
+                <label class="right" for="carbon">%</label>
+            </div>
+            <div class="input_value">
+                <label class="left" for="hydrogen"><abbr title="Рівень водню">H<sup>P</sup></abbr></label>
+                <input type="number" step="0.01" class="values" id="hydrogen" name="hydrogen" value="{{.Hydrogen}}" required>
+                <label class="right" for="hydrogen">%</label>
+            </div>
+            <div class="input_value">
+                <label class="left" for="sulfur"><abbr title="Рівень сірки">S<sup>P</sup></abbr></label>
+                <input type="number" step="0.01" class="values" id="sulfur" name="sulfur" value="{{.Sulfur}}" required>
+                <label class="right" for="sulfur">%</label>
+            </div>
+            <div class="input_value">
+                <label class="left" for="nitrogen"><abbr title="Рівень азоту">N<sup>P</sup></abbr></label>
+                <input type="number" step="0.01" class="values" id="nitrogen" name="nitrogen" value="{{.Nitrogen}}" required>
+                <label class="right" for="nitrogen">%</label>
+            </div>
+            <div class="input_value">
+                <label class="left" for="oxygen"><abbr title="Рівень кисню">O<sup>P</sup></abbr></label>
+                <input type="number" step="0.01" class="values" id="oxygen" name="oxygen" value="{{.Oxygen}}" required>
+                <label class="right" for="oxygen">%</label>
+            </div>
+            <div class="input_value">
+                <label class="left" for="wetness"><abbr title="Рівень вологи">W<sup>P</sup></abbr></label>
+                <input type="number" step="0.01" class="values" id="wetness" name="wetness" value="{{.Wetness}}" required>
+                <label class="right" for="wetness">%</label>
+            </div>
+            <div class="input_value">
+                <label class="left" for="ash"><abbr title="Рівень золи">A<sup>P</sup></abbr></label>
+                <input type="number" step="0.01" class="values" id="ash" name="ash" value="{{.Ash}}" required>
+                <label class="right" for="ash">%</label>
+            </div>
+
+            <div>
+                <button id="calculate" type="submit">Розрахувати</button>
+            </div>
+
+    </form>
+
+    <div id="results">
+
+        <h3>Результати</h3>
+
+        {{if .Result}}
+
+        <p>
+            Коефіцієнт переходу від робочої до сухої маси становить: {{printf "%.2f" (index .Result "wetDryCoef")}};<br/>
+            Коефіцієнт переходу від робочої до горючої маси становить: {{printf "%.2f" (index .Result "wetFireCoef")}};<br/>
+            Склад сухої маси палива становитиме:
+            <abbr title="Рівень вуглецю">C<sup>C</sup></abbr> = {{printf "%.2f" (index (index .Result "dryValues") "carbon_dry")}}%;
+            <abbr title="Рівень водню">H<sup>C</sup></abbr> = {{printf "%.2f" (index (index .Result "dryValues") "hydrogen_dry")}}%;
+            <abbr title="Рівень сірки">S<sup>C</sup></abbr> = {{printf "%.2f" (index (index .Result "dryValues") "sulfur_dry")}}%;
+            <abbr title="Рівень азоту">N<sup>C</sup></abbr> = {{printf "%.2f" (index (index .Result "dryValues") "nitrogen_dry")}}%;
+            <abbr title="Рівень кисню">O<sup>C</sup></abbr> = {{printf "%.2f" (index (index .Result "dryValues") "oxygen_dry")}}%;
+            <abbr title="Рівень золи">A<sup>C</sup></abbr> = {{printf "%.2f" (index (index .Result "dryValues") "ash_dry")}}%;<br/>
+            Склад горючої маси палива становитиме:
+            <abbr title="Рівень вуглецю">C<sup>Г</sup></abbr> = {{printf "%.2f" (index (index .Result "fireValues") "carbon_fire")}}%;
+            <abbr title="Рівень водню">H<sup>Г</sup></abbr> = {{printf "%.2f" (index (index .Result "fireValues") "hydrogen_fire")}}%;
+            <abbr title="Рівень сірки">S<sup>Г</sup></abbr> = {{printf "%.2f" (index (index .Result "fireValues") "sulfur_fire")}}%;
+            <abbr title="Рівень азоту">N<sup>Г</sup></abbr> = {{printf "%.2f" (index (index .Result "fireValues") "nitrogen_fire")}}%;
+            <abbr title="Рівень кисню">O<sup>Г</sup></abbr> = {{printf "%.2f" (index (index .Result "fireValues") "oxygen_fire")}}%;<br/>
+            Нижча теплота згоряння для робочої маси становить : {{printf "%.3f" (index .Result "lowBurnTemp")}}МДж/кг;<br/>
+            Нижча теплота згоряння для сухої маси становить : {{printf "%.3f" (index .Result "lowBurnDryTemp")}}МДж/кг;<br/>
+            Нижча теплота згоряння для горючої маси за становить: {{printf "%.3f" (index .Result "lowBurnFireTemp")}}МДж/кг.
+        </p>
+
+        {{else}}
+
+        <p>Введіть дані для розрахунків</p>
+
+        {{end}}
+
+    </div>
+
+</section>
+<footer>
+    <h3>Дякую за користування</h3>
+</footer>
+</body>
+</html>
