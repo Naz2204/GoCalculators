@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <section>
+        <h2>Пз5</h2>
+        <form method="post" class="input_output" id="calc_form">
+            <div class="input_output">
+                <h3>Порівняння надійності</h3>
+                <div class="input_value">
+                    <label for="w_os" class="left"><abbr title="Частота відмов одноколової системи">&omega;<sub>ос</sub></abbr></label>
+                    <input id="w_os" name="W_os" class="values" type="number" step="0.001"  required value="{{.W_os}}">
+                    <label for="w_os" class="right">рік<sup>-1</sup></label>
+                </div>
+                <div class="input_value">
+                    <label for="t_w_os" class="left"><abbr title="Середня тривалість відновлення">t<sub>в.oc</sub></abbr></label>
+                    <input id="t_w_os" name="T_w_os" class="values" type="number" step="0.01" required value="{{.T_w_os}}">
+                    <label for="t_w_os" class="right">год</label>
+                </div>
+            </div>
+            <div class="input_output">
+                <h3>Розрахунок збитків</h3>
+                <div class="input_value">
+                    <label for="Z_p_a" class="left"><abbr title="Напруга короткого замикання трансформатора">Z<sub>пер.а</sub></abbr></label>
+                    <input id="Z_p_a" name="Z_p_a" class="values" type="number" step="0.01" required value="{{.Z_p_a}}">
+                    <label for="Z_p_a" class="right">грн/кВт*год</label>
+                </div>
+                <div class="input_value">
+                    <label for="Z_p_p" class="left"><abbr title="Номінальна потужність трансформатора">Z<sub>пер.п</sub></abbr></label>
+                    <input id="Z_p_p" name="Z_p_p" class="values" type="number" step="0.01" required value="{{.Z_p_p}}">
+                    <label for="Z_p_p" class="right">грн/кВт*год</label>
+            </div>
+        </div>
+        </form>
+        <div id="results">
+            <h3>Порівняння надійності</h3>
+            <div class="input_value">
+                <p class="left">Частота відмов одноколової системи</p>
+                <p class="right">{{index .Result "W_os"}} рік<sup>-1</sup></p>
+            </div>
+            <div class="input_value">
+                <p class="left">Частота відмов двоколової системи з секційним перемикачем</p>
+                <p class="right">{{index .Result "W_ds"}} рік<sup>-1</sup></p>
+            </div>
+            <div class="input_value">
+                <p class="left">{{index .Result "Comp"}}</p>
+            </div>
+            <h3>Розрахунок збитків від перерв електропостачання</h3>
+            <div class="input_value">
+                <p class="left">Математичне сподівання збитків від переривання електропостачання у разі застосування однотрансформаторної ГПП</p>
+                <p class="right">{{index .Result "M_Z_p"}} грн</p>
+            </div>
+        </div>
+        <div class = "buttons">
+            <button id="calculate" class="btn" form="calc_form" type="submit">Розраxувати</button>
+        </div>
+    </section>
+    <script src="./index.js"></script>
+</body>
+</html>
