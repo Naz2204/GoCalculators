@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <section>
+        <h2>Пз3</h2>
+        <form method="post" class="input_output" id="calc_form">
+            <h3>Підрахування прибутку</h3>
+            <div class="input_value">
+                <label for="sig1" class="left"><abbr title="Середньостатистичне відхилення стандартної системи прогнозу">&sigma;<sub>1</sub></abbr></label>
+                <input id="sig1" name="sig1" class="values" type="number" step="0.01" required value="{{.Sig1}}">
+                <label for="sig1" class="right">МВт</label>
+            </div>
+            <div class="input_value">
+                <label for="sig2" class="left"><abbr title="Середньостатистичне відхилення вдосконаленої системи прогнозу">&sigma;<sub>2</sub></abbr></label>
+                <input id="sig2" name="sig2" class="values" type="number" step="0.01" required value="{{.Sig2}}">
+                <label for="sig2" class="right">МВт</label>
+            </div>
+            <div class="input_value">
+                <label for="P_s" class="left"><abbr title="Середньодобова потужність">P<sub>С</sub></abbr></label>
+                <input id="P_s" name="P_s" class="values" type="number" step="0.01" required value="{{.P_s}}">
+                <label for="P_s" class="right">МВт</label>
+            </div>
+            <div class="input_value">
+                <label for="B" class="left"><abbr title="Вартість електроенергії">B</abbr></label>
+                <input id="B" name="B" class="values" type="number" step="0.01" required value="{{.B}}">
+                <label for="B" class="right">грн/кВт*год</label>
+            </div>
+        </form>
+        <div id="results">
+            <h3>Станція з стандартною системою прогнозування сонячної потужності</h3>
+            <div class="input_value">
+                <p class="left">Частка електроенегрії, що генерується без небалансів</p>
+                <p class="right"> {{index .Result "deltaW1"}} %</p>
+            </div>
+            <div class="input_value">
+                <p class="left">Прибуток електростанції без врахування штрафів</p>
+                <p class="right"> {{index .Result "P1"}} тис. грн</p>
+            </div>
+            <div class="input_value">
+                <p class="left">Штраф</p>
+                <p class="right"> {{index .Result "H1"}} тис. грн</p>
+            </div>
+            <div class="input_value">
+                <p class="left">Чистий прибуток електростанції</p>
+                <p class="right"> {{index .Result "P1-H1"}} тис. грн</p>
+            </div>
+            <h3>Станція з вдосконаленою системою прогнозування сонячної потужності</h3>
+            <div class="input_value">
+                <p class="left">Частка електроенегрії, що генерується без небалансів</p>
+                <p class="right"> {{index .Result "deltaW2"}} %</p>
+            </div>
+            <div class="input_value">
+                <p class="left">Прибуток електростанції без врахування штрафів</p>
+                <p class="right"> {{index .Result "P2"}} тис. грн</p>
+            </div>
+            <div class="input_value">
+                <p class="left">Штраф</p>
+                <p class="right"> {{index .Result "H2"}} тис. грн</p>
+            </div>
+            <div class="input_value">
+                <p class="left">Чистий прибуток електростанції</p>
+                <p class="right"> {{index .Result "P2-H2"}} тис. грн</p>
+            </div>
+        </div>
+        <div class = "buttons">
+            <button id="calculate" class="btn" type="submit" form="calc_form">Розраxувати</button>
+        </div>
+    </section>
+</body>
+</html>
