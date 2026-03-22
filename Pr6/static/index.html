@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+<section>
+    <h2>Калькулятор валового викиду палива</h2>
+    <div id="workshop_params" class="input_output">
+        <h3>Характеристики цеху</h3>
+        <div class="input_value">
+            <label for="number" class="left"><abbr title="Загальна кількість ЕП в цеху">n</abbr></label>
+            <input id="number" class="values" type="number" step="0.01"  required>
+            <label for="number" class="right">шт</label>
+        </div>
+        <div class="input_value">
+            <label for="nominal_capacity" class="left"><abbr title="Номінальна потужність цеху">n*P<sub>н</sub></abbr></label>
+            <input id="nominal_capacity" class="values" type="number" step="0.01" required>
+            <label for="nominal_capacity" class="right">кВт</label>
+        </div>
+        <div class="input_value">
+            <label for="average_active_load" class="left"><abbr title="Середнє активне навантаження цеху">n*P<sub>н</sub>*К<sub>В</sub></abbr></label>
+            <input id="average_active_load" class="values" type="number" step="0.01" required>
+            <label for="average_active_load" class="right">кВт</label>
+        </div>
+        <div class="input_value">
+            <label for="average_reactive_load" class="left"><abbr title="Середнє реактивне навантаження цеху">n*P<sub>н</sub>*К<sub>В</sub>*tg &phi;</abbr></label>
+            <input id="average_reactive_load" class="values" type="number" step="0.01" required>
+            <label for="average_reactive_load" class="right">квар</label>
+        </div>
+        <div class="input_value">
+            <label for="total_squared_power" class="left"><abbr title="Загальна квадратична потужність">n*P<sub>н</sub><sup>2</sup></abbr></label>
+            <input id="total_squared_power" class="values" type="number" step="0.01" required>
+            <label for="total_squared_power" class="right">кВт<sup>2</sup></label>
+        </div>
+        <div class="input_value">
+            <label for="load_voltage" class="left"><abbr title="Напруга навантаження">U<sub>н</sub></abbr></label>
+            <input id="load_voltage" class="values" type="number" step="0.01" required>
+            <label for="load_voltage" class="right">кВ</label>
+        </div>
+    </div>
+    <div id="inputs">
+
+    </div>
+    <div class = "buttons">
+        <button id="add" class="btn">Додати ЕП</button>
+        <button id="calculate" class="btn">Розраxувати</button>
+    </div>
+</section>
+<script src="./index.js"></script>
+</body>
+</html>
